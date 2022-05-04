@@ -24,3 +24,43 @@ func main() {
 }
 ```
 
+## NewSet 调用Add函数添加一堆元素到set中
+```go
+func NewSet(items ...interface{}) *set {
+	s := &set{}
+	s.m = make(map[interface{}]exists)
+	s.Add(items...)
+	return s
+}
+```
+
+## Add 将元素列表插入到set中
+```go
+func (s *set) Add(items ...interface{}) {
+	for _, item := range items {
+		s.m[item] = exists{}
+	}
+}
+```
+
+## Remove 删除指定元素
+```go
+func (s *set) Remove(item interface{}) {
+	delete(s.m, item)
+}
+```
+
+## Contains 查询指定元素是否存在
+```go
+func (s *set) Contains(item interface{}) bool {
+	_, ok := s.m[item]
+	return ok
+}
+```
+
+## Size 查询集合大小
+```go
+func (s *set) Size() int {
+	return len(s.m)
+}
+```
